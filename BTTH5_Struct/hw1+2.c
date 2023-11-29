@@ -7,17 +7,15 @@ struct Student {
     char sex[4];
     char homeTown[30];
 };
-int i,n;
-// case 1: khoi tao danh sach
-void initializeAList(struct Student list[], int *n) {
-    printf("nhap so thanh vien trong lop:");
-    scanf("%d", n);
-    getchar();   
+int i ,n;
 
-    for ( i = 0; i < *n; i++) {
+// case 1: khoi tao danh sach
+void initializeAList(struct Student list[], int  n) { 
+
+    for ( i = 0; i <  n; i++) {
         printf("thong tin sinh vien thu %d\n", i + 1);
-        printf("Ma sinh vien:");
-        getchar();  
+        getchar();
+        printf("Ma sinh vien:"); 
         fgets(list[i].id, 10, stdin);
         printf("Ho va ten:");
         fgets(list[i].name, 30, stdin);
@@ -26,7 +24,11 @@ void initializeAList(struct Student list[], int *n) {
         printf("Que quan:");
         fgets(list[i].homeTown, 30, stdin);
         printf("\n");
+         
+ 
+
     }
+     
 }
 
 // case 2: hien thi danh sach
@@ -71,22 +73,24 @@ void sortInformation(struct Student list[], int n) {
 }
 
 // case 5: tim kiem thong tin
-int searchInformation(struct Student list[], const char *searchId, int n) {
+int searchInformation(struct Student list[], char searchId[], int n) {
     for (i = 0; i < n; i++) {
         if (strcmp(list[i].id, searchId) == 0) {
             return i;
-        }
+		}
     }
     return -1;
 }
 
 int main() {
-    int choice, n = 0, i = 0;
+    int choice ;
     char searchId[10];
     struct Student list[100];
-
+    printf("nhap so thanh vien trong lop:");
+    scanf("%d", &n);
     printf("\n");
     do {
+    	printf("-------------------------------\n");
         printf("CHUONG TRINH QUAN LI SINH VIEN\n");
         printf("-------------------------------\n");
         printf("1. Khoi tao danh sach\n");
@@ -102,7 +106,7 @@ int main() {
 
         switch (choice) {
             case 1:
-                initializeAList(list, &n);
+                initializeAList(list,  n);
                 break;
             case 2:
                 viewListOfStudent(list, n);
@@ -121,6 +125,7 @@ int main() {
                 break;
             case 4:
                 sortInformation(list, n);
+                printf("Da sap xep lai danh sach.\n");
                 break;
             case 5:
                 printf("nhap ma sinh vien can tim:");
@@ -129,7 +134,11 @@ int main() {
 
                 foundIndex = searchInformation(list, searchId, n);
                 if (foundIndex != -1) {
-                    editInformation(list, foundIndex);
+                    printf("Ma sinh vien: %s",list[i].id);
+                    printf("Ho va ten: %s",list[i].name);
+                    printf("Gioi tinh: %s",list[i].sex);
+                    printf("Que quan: %s",list[i].homeTown);
+                    
                 } else {
                     printf("Khong tim thay sinh vien ma:%s", searchId);
                 }
