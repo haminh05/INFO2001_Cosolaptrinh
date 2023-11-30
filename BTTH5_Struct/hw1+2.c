@@ -145,7 +145,6 @@ int main() {
                 break;
             default:
                 printf("Ket thuc chuong trinh\n");
-                break;
         }
 
     } while (choice != 0);
